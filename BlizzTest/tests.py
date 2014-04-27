@@ -57,17 +57,28 @@ for entry in tests:
 			print "Failed request error is fail"
 
 	else:
-		for key in data:
-			if key == 'name':
-				print "Legitimate data found for '%s'. \nMove along..." % data[key]
-			else:
-				with open('%s.json' % entry, 'w') as output:
+		print "***** %s" % data['name']
+		if hasattr(data, 'id'):
+			print "Legitimate data found for '%s'. \nMove along..." % data['name']
+		else:
+			with open('%s.json' % entry, 'w') as output:
 					json.dump(data, output, sort_keys=True,
 	 				indent=4, separators=(',', ': '))
-	 			miscFail = True
-				badGet = "This isn't the item id you were looking for... or worse. \nJSON data exported to a file for verification."
-				Unexpecteds.append(badGet)
-				print badGet
+	 		miscFail = True
+			badGet = "This isn't the item id you were looking for... or worse. JSON data exported to a file for verification."
+			Unexpecteds.append(badGet)
+			print badGet
+		# for key in data:
+		# 	if key == 'name':
+		# 		print "Legitimate data found for '%s'. \nMove along..." % data[key]
+		# 	else:
+		# 		with open('%s.json' % entry, 'w') as output:
+		# 			json.dump(data, output, sort_keys=True,
+	 # 				indent=4, separators=(',', ': '))
+	 # 			miscFail = True
+		# 		badGet = "This isn't the item id you were looking for... or worse. \nJSON data exported to a file for verification."
+		# 		Unexpecteds.append(badGet)
+		# 		print badGet
 
 
 
